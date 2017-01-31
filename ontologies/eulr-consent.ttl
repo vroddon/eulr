@@ -1,0 +1,287 @@
+@prefix : <http://ciolaws.com/ontologies/eulr-consent#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://ciolaws.com/ontologies/eulr-consent> a owl:Ontology ;
+	dc:licence "This ontology may be copied/redistributed under a Creative Commons CC-BY-NC 4.0 licence https://creativecommons.org/licenses/by-nc-nd/4.0/, attributing FrancoisMestre.com and linking to CIOlaws.com" ;
+	dc:creator "François Mestre" ;
+	dc:title "Data subject's consent in Directive 95/46/EC" ;
+	dc:contributor "Víctor Rodríguez Doncel" .
+# 
+# 
+# #################################################################
+# #
+# #    Annotation properties
+# #
+# #################################################################
+# 
+# 
+# http://purl.org/dc/terms/contributor
+
+dc:contributor a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/creator
+
+dc:creator a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/licence
+
+dc:licence a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/title
+
+dc:title a owl:AnnotationProperty .
+# 
+# http://www.w3.org/2004/02/skos/core#narrower
+
+<http://www.w3.org/2004/02/skos/core#narrower> a owl:AnnotationProperty .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Object Properties
+# #
+# #################################################################
+# 
+# 
+# http://ciolaws.com/ontologies/eulr-consent#givesConsent
+
+:givesConsent a owl:ObjectProperty ;
+	rdfs:domain :DataSubject ;
+	rdfs:range :Consent ;
+	rdfs:comment """When must the consent be provided?
+
+Consent must be provided before the processing of personal data starts, but it can also be required in the course of a processing, where there is a new purpose. This is stressed in various provisions of Directive 2002/58/EC, either through the requirement \"prior\" (e.g. Article 6.3) or through the wording of the provisions (e.g. Article 5.3).
+
+Until when is the consent valid?
+
+Individuals who have consented should be able to withdraw their consent, preventing further processing of their data. This is confirmed also under the ePrivacy Directive for specific data processing operations based on consent, such as the processing of location data other than traffic data.""" ;
+	rdfs:isDefinedBy """NEED TO ADD HERE A REFERENCE TO Working Party 29
+Opinion 15/2011 on the definition of consent""" .
+# 
+# http://ciolaws.com/ontologies/eulr-consent#isReceivedBy
+
+:isReceivedBy a owl:ObjectProperty ;
+	rdfs:domain :Information ;
+	rdfs:range :DataSubject .
+# 
+# http://ciolaws.com/ontologies/eulr-consent#isSeekedBy
+
+:isSeekedBy a owl:ObjectProperty ;
+	rdfs:domain :Consent ;
+	rdfs:range :DataController .
+# 
+# http://ciolaws.com/ontologies/eulr-consent#providesInformation
+
+:providesInformation a owl:ObjectProperty ;
+	rdfs:domain :DataController ;
+	rdfs:range :Information .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Data properties
+# #
+# #################################################################
+# 
+# 
+# http://ciolaws.com/ontologies/eulr-consent#Explicit
+
+:Explicit a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Consent ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "As to how consent must be provided, Article 8.2(a) requires explicit consent to process sensitive data, meaning an active response, oral or in writing, whereby the individual expresses his/her wish to have his/her data processed for certain purposes. Therefore, express consent cannot be obtained by the presence of a pre-ticked box. The data subject must take some positive action to signify consent and must be free not to consent." .
+# 
+# http://ciolaws.com/ontologies/eulr-consent#FreelyGiven
+
+:FreelyGiven a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Consent ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "For consent to be valid, it must be freely given. This means that there must be no risk of deception, intimidation or significant negative consequences for the data subject if he/she does not consent. Data processing operations in the employment environment where there is an element of subordination, as well as in the context of government services such as health may require careful assessment of whether individuals are free to consent." .
+# 
+# http://ciolaws.com/ontologies/eulr-consent#Informed
+
+:Informed a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Consent ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "Consent must be informed. Articles 10 and 11 of the Directive lists the type of information that must necessarily be provided to individuals. In any event, the information provided must be sufficient to guarantee that individuals can make well informed decisions about the processing of their personal data. The need for consent to be \"informed\" translates into two additional requirements. First, the way in which the information is given must ensure the use of appropriate language so that data subjects understand what they are consenting to and for what purposes. This is contextual. The use of overly complicated legal or technical jargon would not meet the requirements of the law. Second, the information provided to users should be clear and sufficiently conspicuous so that users cannot overlook it. The information must be provided directly to individuals. It is not enough for it to be merely available somewhere." .
+# 
+# http://ciolaws.com/ontologies/eulr-consent#Specific
+
+:Specific a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Consent ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "Consent must be specific. Blanket consent without determination of the exact purposes does not meet the threshold. Rather than inserting the information in the general conditions of the contract, this calls for the use of specific consent clauses, separated from the general terms and conditions." .
+# 
+# http://ciolaws.com/ontologies/eulr-consent#Unambiguous
+
+:Unambiguous a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Consent ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment """For data other than sensitive data, Article 7(a) requires consent to be unambiguous. \"Unambiguous\" calls for the use of mechanisms to obtain consent that leave no doubt as to the individual's intention to provide consent. In practical terms, this requirement enables data controllers to use different types of mechanisms to seek consent, ranging from statements to indicate agreement (express consent), to mechanisms that rely on actions that aim at indicating agreement.
+
+Consent based on an individual's inaction or silence would normally not constitute valid consent, especially in an on-line context. This is an issue that arises in particular with regard to the use of default settings which the data subject is required to modify in order to reject the processing. For example, this is the case with the use of pre-ticked boxes or Internet browser settings that are set by default to collect data.""" .
+# 
+# http://ciolaws.com/ontologies/eulr-consent#hasLegalCapacity
+
+:hasLegalCapacity a owl:DatatypeProperty ;
+	rdfs:domain :DataSubject ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "Valid consent presupposes individuals' capacity to consent. Rules regarding the capacity to consent are not harmonised and may therefore vary from Member State to Member State." ;
+	rdfs:isDefinedBy "NEED TO ADD REFERENCE to Working Party 29 Opinion 15/2011 on the definition of consent" .
+# 
+# http://www.w3.org/2002/07/owl#topDataProperty
+
+owl:topDataProperty a owl:FunctionalProperty .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# http://ciolaws.com/ontologies/eulr-consent#Consent
+
+:Consent a owl:Class ;
+	rdfs:comment "Directive 95/46/EC Article 2 (h) of Directive 95/46/EC defines consent as \"any freely given specific and informed indication of his wishes by which the data subject signifies his agreement to personal data relating to him being processed\"" , """What is the distinction of the concept of consent from the concept of “right to object”?
+
+Situations where data controllers use consent as a legal ground to process personal data should not be confused with situations where the controller bases the processing on other legal grounds which entail an individual right to object. For example, this may be the case when the processing relies on the 'legitimate interests' of the data controller ex Article 7(f) of Directive 95/46/EC, yet the individual has the right to object ex Article 14(a) of Directive 95/46/EC. Another example is when a data controller sends e-mail communications to existing clients in order to promote the data controller's own or similar products or services, however, individuals have a right to object under Article 13.2 of Directive 2002/58/EC. In both cases, the data subject has the right to object to the processing, this is not the same as consent.""" , """Where does the consent apply? (in which operations?)
+
+Generally speaking, the legal framework of Directive 95/46/EC applies whenever consent is sought, independently of whether this happens off-line or on-line. For example, the same rules apply when a bricks and mortar retailer seeks sign up for a loyalty card scheme via a paper form, as would be the case if it did this through its Internet site. In addition, the ePrivacy Directive specifies certain data processing operations which are subject to consent: they mostly relate to the processing of data in connection with the provision of publicly available electronic communication services. The requirements for consent to be valid within Directive 2002/58/EC are the same as under Directive 95/46/EC""" ;
+	rdfs:isDefinedBy """NEED TO ADD HERE A REFERENCE TO Working Party 29
+Opinion 15/2011 on the definition of consent""" ;
+	rdfs:seeAlso "Relevance of consent as an enabler of the individual’s autonomy and self-determination (Kant)" .
+# 
+# http://ciolaws.com/ontologies/eulr-consent#DataController
+
+:DataController a owl:Class .
+# 
+# http://ciolaws.com/ontologies/eulr-consent#DataSubject
+
+:DataSubject a owl:Class .
+# 
+# http://ciolaws.com/ontologies/eulr-consent#Information
+
+:Information a owl:Class ;
+	rdfs:comment "NEED TO ADD REFERENCE to art 10 and 11 of Dir 95/46/EC" , """What information must be provided?
+
+Article 10
+
+Information in cases of collection of data from the data subject
+
+Member States shall provide that the controller or his representative must provide a data subject from whom data relating to himself are collected with at least the following information, except where he already has it:
+
+(a) the identity of the controller and of his representative, if any;
+
+(b) the purposes of the processing for which the data are intended;
+
+(c) any further information such as
+
+- the recipients or categories of recipients of the data,
+
+- whether replies to the questions are obligatory or voluntary, as well as the possible consequences of failure to reply,
+
+- the existence of the right of access to and the right to rectify the data concerning him
+
+in so far as such further information is necessary, having regard to the specific circumstances in which the data are collected, to guarantee fair processing in respect of the data subject.
+
+Article 11
+
+Information where the data have not been obtained from the data subject
+
+1. Where the data have not been obtained from the data subject, Member States shall provide that the controller or his representative must at the time of undertaking the recording of personal data or if a disclosure to a third party is envisaged, no later than the time when the data are first disclosed provide the data subject with at least the following information, except where he already has it:
+
+(a) the identity of the controller and of his representative, if any;
+
+(b) the purposes of the processing;
+
+(c) any further information such as
+
+- the categories of data concerned,
+
+- the recipients or categories of recipients,
+
+- the existence of the right of access to and the right to rectify the data concerning him
+
+in so far as such further information is necessary, having regard to the specific circumstances in which the data are processed, to guarantee fair processing in respect of the data subject.
+
+2. Paragraph 1 shall not apply where, in particular for processing for statistical purposes or for the purposes of historical or scientific research, the provision of such information proves impossible or would involve a disproportionate effort or if recording or disclosure is expressly laid down by law. In these cases Member States shall provide appropriate safeguards.""" .
+# 
+# http://ciolaws.com/ontologies/eulr-consent#ValidConsent
+
+:ValidConsent a owl:Class ;
+	owl:equivalentClass _:genid1 .
+
+_:genid1 owl:intersectionOf _:genid10 .
+
+_:genid10 a rdf:List ;
+	rdf:first _:genid11 .
+
+_:genid11 a owl:Restriction ;
+	owl:onProperty :Explicit ;
+	owl:hasValue "true"^^xsd:boolean .
+
+_:genid10 rdf:rest _:genid8 .
+
+_:genid8 a rdf:List ;
+	rdf:first _:genid9 .
+
+_:genid9 a owl:Restriction ;
+	owl:onProperty :FreelyGiven ;
+	owl:hasValue "true"^^xsd:boolean .
+
+_:genid8 rdf:rest _:genid6 .
+
+_:genid6 a rdf:List ;
+	rdf:first _:genid7 .
+
+_:genid7 a owl:Restriction ;
+	owl:onProperty :Informed ;
+	owl:hasValue "true"^^xsd:boolean .
+
+_:genid6 rdf:rest _:genid4 .
+
+_:genid4 a rdf:List ;
+	rdf:first _:genid5 .
+
+_:genid5 a owl:Restriction ;
+	owl:onProperty :Specific ;
+	owl:hasValue "true"^^xsd:boolean .
+
+_:genid4 rdf:rest _:genid2 .
+
+_:genid2 a rdf:List ;
+	rdf:first _:genid3 .
+
+_:genid3 a owl:Restriction ;
+	owl:onProperty :Unambiguous ;
+	owl:hasValue "true"^^xsd:boolean .
+
+_:genid2 rdf:rest rdf:nil .
+
+_:genid1 a owl:Class .
+
+:ValidConsent rdfs:subClassOf :Consent ;
+	rdfs:comment """What are the modalities of the prior informed consent?
+
+Consent must be collected in a way that assures its validity.
+The Regulations does not prescribe how consent is to be obtained.
+Each Member State DPO provides its own guidance.""" ;
+	rdfs:isDefinedBy "NEED TO ADD A REFERENCE TO WP29 opinion on definition of consent" .
+
+_:genid12 a owl:Axiom ;
+	owl:annotatedSource :ValidConsent ;
+	owl:annotatedProperty owl:equivalentClass ;
+	owl:annotatedTarget _:genid1 ;
+	rdfs:comment "What are the legal conditions for the consent to be valid (elements of a valid consent)?" .
+# 
+# Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi

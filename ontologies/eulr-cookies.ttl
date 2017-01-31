@@ -1,0 +1,893 @@
+@prefix : <http://ciolaws.com/ontologies/eulr-cookies#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix lkif: <http://www.estrellaproject.org/lkif-core/lkif-extended.owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+
+<http://ciolaws.com/ontologies/eulr-cookies> a owl:Ontology ;
+#	owl:imports <http://ciolaws.com/ontologies/eulr-consent> ;
+	vann:preferredNamespacePrefix "ciolaws" ;
+	dc:licence "This ontology may be copied/redistributed under a Creative Commons CC-BY-NC 4.0 licence https://creativecommons.org/licenses/by-nc-nd/4.0/, attributing FrancoisMestre.com and linking to CIOlaws.com" ;
+	dc:creator "François Mestre" ;
+	dc:title "EU legal regime on cookies" ;
+	dc:contributor "Víctor Rodríguez Doncel" .
+# 
+# 
+# #################################################################
+# #
+# #    Annotation properties
+# #
+# #################################################################
+# 
+# 
+# http://purl.org/dc/terms/contributor
+
+dc:contributor a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/creator
+
+dc:creator a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/licence
+
+dc:licence a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/title
+
+dc:title a owl:AnnotationProperty .
+# 
+# http://purl.org/vocab/vann/preferredNamespacePrefix
+
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+# 
+# http://www.estrellaproject.org/lkif-core/expression.owl#qualified_by
+
+<http://www.estrellaproject.org/lkif-core/expression.owl#qualified_by> a owl:AnnotationProperty .
+# 
+# http://www.w3.org/2004/02/skos/core#closeMatch
+
+<http://www.w3.org/2004/02/skos/core#closeMatch> a owl:AnnotationProperty .
+# 
+# http://www.w3.org/2004/02/skos/core#definition
+
+<http://www.w3.org/2004/02/skos/core#definition> a owl:AnnotationProperty .
+# 
+# http://www.w3.org/2004/02/skos/core#exactMatch
+
+<http://www.w3.org/2004/02/skos/core#exactMatch> a owl:AnnotationProperty .
+# 
+# http://www.w3.org/2004/02/skos/core#narrower
+
+<http://www.w3.org/2004/02/skos/core#narrower> a owl:AnnotationProperty .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Datatypes
+# #
+# #################################################################
+# 
+# 
+# http://org.semanticweb.owlapi/error#Error1
+
+<http://org.semanticweb.owlapi/error#Error1> a rdfs:Datatype .
+# 
+# http://org.semanticweb.owlapi/error#Error2
+
+<http://org.semanticweb.owlapi/error#Error2> a rdfs:Datatype .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Object Properties
+# #
+# #################################################################
+# 
+# 
+# http://ciolaws.com/ontologies/eulr-consent#givesConsent
+
+<http://ciolaws.com/ontologies/eulr-consent#givesConsent> rdfs:domain :CookieUser ;
+	rdfs:range :CookieConsent .
+# 
+# http://ciolaws.com/ontologies/eulr-consent#isReceivedBy
+
+<http://ciolaws.com/ontologies/eulr-consent#isReceivedBy> rdfs:range :CookieUser .
+# 
+# http://ciolaws.com/ontologies/eulr-consent#isSeekedBy
+
+<http://ciolaws.com/ontologies/eulr-consent#isSeekedBy> rdfs:domain :CookieConsent ;
+	rdfs:range :CookiePublisher ;
+	rdfs:comment """What does the EASA/IAB Code implement to obtain consent?
+
+User choice over Online Behavioural Advertising
+A. Each Third Party should make available a mechanism for web users to exercise their choice with respect to the collection and use of data for OBA purposes and the transfer of such data to Third Parties for OBA. Such choice should be available from the notice described in I.A.1 and via the OBA User Choice Site.
+
+Under the EASA/IAB Code, an icon will be used as an information notice for
+behavioural advertising. In the current implementation of the Code, the icon is linked to
+an information website, www.youronlinechoices.eu. 
+
+Since the icon in itself and the website www.youronlinechoices.eu do not provide
+accurate and easily understandable information about the different controllers
+(advertising networks) and their purposes for the processing, the Code and the website
+do not meet the requirement set out at the revised e-Privacy Directive.""" , """What mechanisms can be used to seek consent?
+
+In practice, via a notification and cookies statement
+Currently observed implementations are based on one or more of the following practices, although it is important to note that whilst each may be a useful component of a consent mechanism the use of an individual practice in isolation is unlikely to be sufficient to provide valid consent as all elements of valid consent need to be present (e.g. an effective choice mechanism also requires notice and information): 
+•	an immediately visible notice that various types of cookies are being used by the website, providing information in a layered approach, typically providing a link, or series of links, where the user can find out more about types of cookies being used, 
+•	an immediately visible notice that by using the website, the user agrees to cookies being set by the websites, 
+•	information as to how the users can signify and later withdraw their wishes regarding cookies including information on the action required to express such a preference,  
+•	a mechanism by which the user can choose to accept all or some or decline cookies,  
+•	an option for the user to subsequently change a prior preference regarding cookies.
+
+The methods for giving information, offering a right to refuse or requesting consent should be made as user-friendly as possible.
+
+A pop up is not the only possible way to receive consent
+Many people are led to believe that pop up screens are the only way to obtain consent. This is not the case. There are many examples of other, more user friendly ways, to obtain consent. Some of these examples are:
+- A static information banner on top of a website requesting the user’s consent to set some cookies, with a hyperlink to a privacy statement with a more detailed explanation about the different controllers and the purposes of the processing. Such a banner is currently employed by the UK data protection authority8.
+- A splash screen on entering the website explaining what cookies will be set by what parties if the user consents. Such splash screens are being used by for example breweries that wish to ensure their visitors are old enough to be allowed to visit the website.
+
+
+R9: The EU institution must give the users simple tools to easily express and manage (e.g. withdraw) their consent at any moment and for each and every category of cookies, depending on their purpose and origin (first or third party). 
+
+R10: The EU institution should recommend that users read the cookie notice and collect consent in the section of the web service where clear and comprehensive information on cookies is given. 
+
+R11: The EU institution must collect consent as the result of a user’s active behaviour that leaves no room for interpretation of the user’s choice. As a result, an explicit consent to the way cookies are used in the web service is considered as the most appropriate way of expressing consent. Continuing using the web service does not guarantee unambiguous consent. 
+
+R13: The consent management mechanism provided by the EU institution should enable the institution to demonstrate that consent was obtained and how""" ;
+	rdfs:isDefinedBy :directive58rec25 , :edps071116 , <http://ciolaws.com/ontologies/eulr-cookies#EASA/IABcode> , <http://ciolaws.com/ontologies/eulr-cookies#wp29-15/2011> , <http://ciolaws.com/ontologies/eulr-cookies#wp29-16/2011> , <http://ciolaws.com/ontologies/eulr-cookies#wp29wd02/2013> .
+# 
+# http://ciolaws.com/ontologies/eulr-consent#provideInformation
+
+<http://ciolaws.com/ontologies/eulr-consent#provideInformation> a owl:ObjectProperty ;
+	rdfs:subPropertyOf :seekPriorInformedConsent .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#IntroducesInTerminalEquipment
+
+:IntroducesInTerminalEquipment a owl:ObjectProperty ;
+	rdfs:domain :SettingCookie ;
+	rdfs:range :TrackingDevice .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#canGiveConsent
+
+:canGiveConsent a owl:ObjectProperty ;
+	rdfs:subPropertyOf :hasJuralRelation ;
+	owl:inverseOf :seekPriorInformedConsent ;
+	rdfs:domain :CookieUser ;
+	rdfs:range :CookiePublisher ;
+	rdfs:comment """Enabling power: legal power of the user to surrender his privilege on the data on his device to the service provider (the user gives “licence” of entrance to the service provider). Withholding of access by others (right) unless some consent is given. Correlative to this legal power is the legal liability (subjection) of the service provider which is subject, nolens volens,  to the change in jural relation involved in the exercise of the user´s power to give his consent.
+Following the representation proposed in (Sartor, 2006), the jural relations above can be formalized as:
+EnablingPoweru (let use cookies VIA consent) = Subjectionsp
+(User=u , Service provider=sp)""" ;
+	<http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.estrellaproject.org/lkif-core/norm.owl#Enabling_Power> .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#hasJuralRelation
+
+:hasJuralRelation a owl:ObjectProperty ;
+	rdfs:domain _:genid198 .
+
+_:genid198 a owl:Class ;
+	owl:unionOf _:genid3 .
+
+_:genid3 a rdf:List ;
+	rdf:first :CookiePublisher ;
+	rdf:rest _:genid2 .
+
+_:genid2 a rdf:List ;
+	rdf:first :CookieUser ;
+	rdf:rest rdf:nil .
+
+:hasJuralRelation rdfs:range _:genid197 .
+
+_:genid197 a owl:Class ;
+	owl:unionOf _:genid3 .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#hasLegalDerogation
+
+:hasLegalDerogation a owl:ObjectProperty ;
+	rdfs:subPropertyOf :hasLegalGround ;
+	rdfs:domain :SettingCookie ;
+	rdfs:range :CookieDerogation ;
+	rdfs:comment """For what purposes can (or can not) the exemption be applied?
+
+First party session cookies are far more likely to be exempted from consent than third party persistent cookies. However, the purpose of the cookie should always be the basis for evaluating if the exemption can be successfully applied rather than a technical feature of the cookie.
+
+This analysis has shown that the following cookies can be exempted from informed consent under certain conditions if they are not used for additional purposes: 
+1) User input cookies (session-id), for the duration of a session or persistent cookies limited to a few hours in some cases. 
+2) Authentication cookies, used for authenticated services, for the duration of a session. 
+3) User centric security cookies, used to detect authentication abuses, for a limited persistent duration. 
+4) Multimedia content player session cookies, such as flash player cookies, for the duration of a session. 
+5) Load balancing session cookies, for the duration of session. 
+6) UI customization persistent cookies, for the duration of a session (or slightly more). 
+7) Third party social plug-in content sharing cookies, for logged in members of a social network. 
+
+Having regard to social networks, the working party notes however that the use of third party social plug-in cookies for other purposes than to provide a functionality explicitly requested by their own members requires consent, notably if these purposes involve tracking users across websites. 
+The working party recalls that third party advertising cookies cannot be exempted from consent, and further clarifies that consent would also be needed for operational purposes related to third party advertising such as frequency capping, financial logging, ad affiliation, click fraud detection, research and market analysis, product improvement and debugging. While some operational purposes might certainly distinguish one user from another, in principle these purposes do not justify the use of unique identifiers. This point is of particular relevance in the context of the current discussions regarding the implementation of the Do Not Track standard in Europe. 
+This analysis also shows that first party analytics cookies are not exempt from consent but pose limited privacy risks, provided reasonable safeguards are in place, including adequate information, the ability to opt-out easily and comprehensive anonymisation mechanisms.""" , """What is applicable in these exceptional cases?
+
+Opt-out = individual right to object
+Situations where data controllers use consent as a legal ground to process personal data should not be confused with situations where the controller bases the processing on other legal grounds which entail an individual right to object
+Reliance on these two exceptions to the obligation to seek prior consent does not relieve the data controller from complying with the obligation to provide information and to provide a possibility to object.
+This analysis is conducted without prejudice to the right to be informed and the eventual right to oppose set forth by Directive 95/46/EC, which apply to personal data processing whether cookies are used or not.""" ;
+	rdfs:isDefinedBy <http://ciolaws.com/ontologies/eulr-cookies#wp29-04/2012> , <http://ciolaws.com/ontologies/eulr-cookies#wp29-15/2011> .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#hasLegalGround
+
+:hasLegalGround a owl:ObjectProperty ;
+	rdfs:domain :SettingCookie ;
+	rdfs:range :CookieLegalGround .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#hasPrivacy
+
+:hasPrivacy a owl:ObjectProperty ;
+	rdfs:subPropertyOf :hasJuralRelation ;
+	owl:inverseOf :noAccess ;
+	rdfs:domain :CookieUser ;
+	rdfs:range :CookiePublisher ;
+	rdfs:comment "Terminal equipment of users of electronic communications networks and any information stored on such equipment are part of the private sphere of the users requiring protection under the European Convention for the Protection of Human Rights and Fundamental Freedoms." ;
+	rdfs:isDefinedBy :directive58rec24 ;
+	rdfs:seeAlso """Obligative right: claim of the user that the service provider shall not access the device, such others being under correlative legal duty not to access the information on the device
+
+Following the representation proposed in (Sartor, 2006), this jural relations can be formalized as:
+OblRightu (Doessp [not read and or write data on the device]) = Oblu (Doessp [not read and or write data on the device])""" ;
+	<http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.estrellaproject.org/lkif-core/norm.owl#Obligative_Right> .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#hasPublisher
+
+:hasPublisher a owl:ObjectProperty ;
+	rdfs:domain :SettingCookie ;
+	rdfs:range :CookiePublisher .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#hasPurpose
+
+:hasPurpose a owl:ObjectProperty ;
+	rdfs:domain :SettingCookie ;
+	rdfs:range :CookiePurpose .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#hasRecipient
+
+:hasRecipient a owl:ObjectProperty ;
+	rdfs:domain :SettingCookie ;
+	rdfs:range :CookieUser .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#hasUserConsent
+
+:hasUserConsent a owl:ObjectProperty ;
+	rdfs:subPropertyOf :hasLegalGround ;
+	rdfs:domain :SettingCookie ;
+	rdfs:range :CookieConsent ;
+	rdfs:comment """Can the consent serve for several cookies?
+Information and the right to refuse may be offered once for the use of various devices to be installed on the user's terminal equipment during the same connection and also covering any further use that may be made of those devices during subsequent connections.""" , """For how long does the consent serve?
+Collecting consent is not required for each and every use of the web service but its validity along the time should be appropriate with respect to the type of the services and the frequency of use. 
+The EU institution should periodically remind the user that they gave their consent and of what they consented to. The frequency of reminders may depend on the frequency of use. Daily users should receive reminders less often. Users that have not used the service for several months may be reminded every time.""" ;
+	rdfs:isDefinedBy :directive58rec25 , :edps071116 .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#noAccess
+
+:noAccess a owl:ObjectProperty ;
+	rdfs:subPropertyOf :hasJuralRelation .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#providesCookieInformation
+
+:providesCookieInformation a owl:ObjectProperty ;
+	rdfs:subPropertyOf <http://ciolaws.com/ontologies/eulr-consent#providesInformation> ;
+	rdfs:domain :CookiePublisher ;
+	rdfs:range :CookieInformation ;
+	rdfs:comment "Provide clear and comprehensive information, in accordance with Directive 95/46/EC, inter alia, about the purposes of the processing" , """• Providing highly visible information is a precondition for consent to be valid. Mentioning the practice of behavioural advertising in general terms and conditions and/or privacy policies can never suffice. In this regard and taking into account the average low level of knowledge about the practice of behavioural advertising, efforts should be applied to change this situation. 
+• Ad network providers/ publishers must provide information to users in compliance with Article 10 of Directive 95/46/EC. In practical terms, they should ensure that individuals are told, at a minimum, who (i.e. which entity) is responsible for serving the cookie and collecting the related information. In addition, they should be informed in simple ways that (a) the cookie will be used to create profiles; (b) what type of information will be collected to build such profiles; (c) the fact that the profiles will be used to deliver targeted advertising and (d) the fact that the cookie will enable the user's identification across multiple web sites. 
+• Network providers/ publishers should provide the information directly on the screen, interactively, if needed, through layered notices.  In any event it should be easily accessible and highly visible. 
+• Icons placed on the publisher's website, around advertising, with links to additional information, are good examples. The Article 29 Working Party urges the network providers/ publisher industry to be creative in this area.""" ;
+	rdfs:isDefinedBy :directive58art5-3 , <http://ciolaws.com/ontologies/eulr-cookies#EASA/IABcode> .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#seekPriorInformedConsent
+
+:seekPriorInformedConsent a owl:ObjectProperty ;
+	rdfs:subPropertyOf :hasJuralRelation ;
+	rdfs:comment "The publisher of the cookie, be it the web site operator or the third party publisher (advertising network provider) has the obligation to seek and obtain the consent from the user." ;
+	rdfs:isDefinedBy <http://ciolaws.com/ontologies/eulr-cookies#EASA/IABcode> , <http://ciolaws.com/ontologies/eulr-cookies#wp29-04/2012> , <http://ciolaws.com/ontologies/eulr-cookies#wp29-16/2011> .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Data properties
+# #
+# #################################################################
+# 
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#hasDuration
+
+:hasDuration a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :TrackingDevice ;
+	rdfs:range _:genid4 .
+
+_:genid4 a rdfs:Datatype ;
+	owl:oneOf _:genid6 .
+
+_:genid6 a rdf:List ;
+	rdf:first "Permanent" ;
+	rdf:rest _:genid5 .
+
+_:genid5 a rdf:List ;
+	rdf:first "Session" ;
+	rdf:rest rdf:nil .
+
+:hasDuration rdfs:comment """Cookies are often categorized according to whether they are “session cookies” or “persistent cookie”. 
+A “session cookie” is a cookie that is automatically deleted when the user closes his browser, while a “persistent cookie” is a cookie that remains stored in the user’s terminal device until it reaches a defined expiration date (which can be minutes, days or several years in the future).""" ;
+	rdfs:isDefinedBy <http://ciolaws.com/ontologies/eulr-cookies#wp29-04/2012> .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#hasOrigin
+
+:hasOrigin a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :TrackingDevice ;
+	rdfs:range _:genid7 .
+
+_:genid7 a rdfs:Datatype ;
+	owl:oneOf _:genid9 .
+
+_:genid9 a rdf:List ;
+	rdf:first "First Party" ;
+	rdf:rest _:genid8 .
+
+_:genid8 a rdf:List ;
+	rdf:first "Third Party" ;
+	rdf:rest rdf:nil .
+
+:hasOrigin rdfs:comment """Cookies are often categorized whether they are “third party cookies” or “first party cookies”. 
+ “third party cookie” describe cookies that are set by data controllers that do not operate the website currently visited by the user. Conversely, the term “first party cookie” will be used to refer to a cookie set by the data controller (or any of its processors) operating the website visited by the user, as defined by the URL that is usually displayed in the browser address bar.""" ;
+	rdfs:isDefinedBy <http://ciolaws.com/ontologies/eulr-cookies#wp29-04/2012> .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#CookieConsent
+
+:CookieConsent a owl:Class ;
+	rdfs:subClassOf <http://ciolaws.com/ontologies/eulr-consent#Consent> , :CookieLegalGround ;
+	rdfs:comment """Does the EASA/IAB Code provide users with consent options compliant with Article 5(3)? 
+
+No.
+The EASA/IAB Code, instead of seeking users consent, claims to provide for a way of exercising “choice”. In fact it is a choice to opt out, as it offers the user the possibility to object to having his/her data collected and further processed for OBA.
+This \"choice\" is not consistent with Article 5(3) of the revised e-Privacy Directive, as the data are in fact processed without user's consent and without providing the user with information before the processing takes place. Therefore, adherence to Principle II does not meet the requirement set out at the revised e-Privacy Directive. 
+
+- User choice site: www.youronlinechoices.eu
+The first practical implementation of the EASA/IAB Code is the www.youronlinechoices.eu website, where the method selected to express “choice” is based on the use of different \"opt-out\" cookies. With the help of such a cookie an advertising network may record the user’s refusal to further take part in online behavioural advertising. This approach could easily be modified to be compliant with the amended Article 5(3) of the directive by creating an “opt-in” cookie solution, as explained later on.
+The website contains a list with different names of advertising networks. Users may indicate their preference if they do not wish to receive targeted advertising from one, more or all of the networks. Selecting one or more advertising networks results in the installation of one or more opt-out cookies from these networks. 
+This implementation, apart from the fact that it follows an opt-out approach and thus is not consistent with the requirement for prior informed consent as set out in article 5(3) of the revised e-Privacy Directive, has the following additional problems:
+a) Although the opt-out cookie prevents the further reception of personalised advertising, it does not stop the advertising network from accessing and storing information in the user's terminal. On the contrary, it has been demonstrated that an ongoing technical exchange of information between the user’s terminal equipment and the advertising network is still in place after the installation of the opt-out cookie.
+b) The user is not informed on whether or not the tracking cookie remains stored in his/her computer and for what purpose.
+c) The installation of the opt-out cookie does not offer the possibility to manage and delete previously installed tracking cookies, whereas at the same time it creates the mistaken presumption that opting out disables the tracking of internet behaviour.""" , "‘consent’ by a user or subscriber corresponds to the data subject's consent in Directive 95/46/EC" ;
+	rdfs:isDefinedBy :directive58art2 , <http://ciolaws.com/ontologies/eulr-cookies#EASA/IABcode> .
+
+_:genid10 a owl:Axiom ;
+	owl:annotatedSource :CookieConsent ;
+	owl:annotatedProperty rdfs:subClassOf ;
+	owl:annotatedTarget <http://ciolaws.com/ontologies/eulr-consent#Consent> ;
+	rdfs:comment "‘consent’ by a user or subscriber corresponds to the data subject's consent in Directive 95/46/EC;" ;
+	rdfs:isDefinedBy :directive58art2 .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#CookieDerogation
+
+:CookieDerogation a owl:Class ;
+	rdfs:subClassOf :CookieLegalGround ;
+	rdfs:comment """What are the exceptions to the obligation to seek prior consent (to the principle of informed consent)?
+When can cookie be exempt from the principle of informed consent?
+
+
+There are two exceptions concerning the technical storage or access for the sole purpose of carrying out the transmission of a communication over an electronic communications network (Exception A), or as strictly necessary in order for the provider of an information society service explicitly requested by the subscriber or user to provide the service (Exception B).""" ;
+	rdfs:isDefinedBy :directive58art5-3 .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#CookieInformation
+
+:CookieInformation a owl:Class ;
+	rdfs:subClassOf <http://ciolaws.com/ontologies/eulr-consent#Information> .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#CookieLegalGround
+
+:CookieLegalGround a owl:Class ;
+	rdfs:comment "The use of tracking devices should be allowed only for legitimate purposes, with the knowledge of the users concerned (with prior informed consent), unless an exception applies" ;
+	rdfs:isDefinedBy :directive136rec66 , :directive58art5-3 .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#CookiePublisher
+
+:CookiePublisher a owl:Class ;
+	rdfs:subClassOf _:genid11 .
+
+_:genid11 a owl:Class ;
+	owl:unionOf _:genid13 .
+
+_:genid13 a rdf:List ;
+	rdf:first :ThirdPartyPublisher ;
+	rdf:rest _:genid12 .
+
+_:genid12 a rdf:List ;
+	rdf:first :WebSiteOperator ;
+	rdf:rest rdf:nil .
+
+:CookiePublisher rdfs:comment "Data controller as per definition in Directive 95/46/EC (syn. Publishers, Provider of Information services)" ;
+	rdfs:isDefinedBy :directive58art5-3 ;
+	<http://www.w3.org/2004/02/skos/core#closeMatch> <http://ciolaws.com/ontologies/eulr-consent#DataController> .
+
+_:genid14 a owl:Axiom ;
+	owl:annotatedSource :CookiePublisher ;
+	owl:annotatedProperty <http://www.w3.org/2004/02/skos/core#closeMatch> ;
+	owl:annotatedTarget <http://ciolaws.com/ontologies/eulr-consent#DataController> ;
+	rdfs:seeAlso :CookieUser .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#CookiePurpose
+
+:CookiePurpose a owl:Class ;
+	owl:equivalentClass _:genid15 .
+
+_:genid15 a owl:Class ;
+	owl:unionOf _:genid17 .
+
+_:genid17 a rdf:List ;
+	rdf:first :IllegitimateCookiePurpose ;
+	rdf:rest _:genid16 .
+
+_:genid16 a rdf:List ;
+	rdf:first :LegitimateCookiePurpose ;
+	rdf:rest rdf:nil .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#CookiePurposeWithDerogation
+
+:CookiePurposeWithDerogation a owl:Class ;
+	rdfs:subClassOf :LegitimateCookiePurpose .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#CookieUser
+
+:CookieUser a owl:Class ;
+	rdfs:subClassOf _:genid18 .
+
+_:genid18 a owl:Restriction ;
+	owl:onProperty _:genid19 .
+
+_:genid19 owl:inverseOf :hasRecipient .
+
+_:genid18 owl:someValuesFrom :SettingCookie .
+
+:CookieUser rdfs:comment """any natural person using a publicly available electronic communications service, for private or business purposes, without necessarily having subscribed to this service;
+(syn. Subscriber)""" ;
+	rdfs:isDefinedBy :directive58art2 ;
+	<http://www.w3.org/2004/02/skos/core#closeMatch> <http://ciolaws.com/ontologies/eulr-consent#DataSubject> ;
+	<http://www.w3.org/2004/02/skos/core#narrower> "http://www.estrellaproject.org/lkif-core/action.owl#Person" .
+
+_:genid20 a owl:Axiom ;
+	owl:annotatedSource :CookieUser ;
+	owl:annotatedProperty <http://www.w3.org/2004/02/skos/core#closeMatch> ;
+	owl:annotatedTarget <http://ciolaws.com/ontologies/eulr-consent#DataSubject> ;
+	rdfs:comment """Opinion 2/2010 on online behavioural advertising states:
+• Article 5(3) applies whenever \"information\" such as a cookie is stored or retrieved from the terminal equipment of an internet user. It is not a prerequisite that this information is personal data.
+
+However:
+• Directive 95/46/EC applies to matters not specifically covered by the ePrivacy Directive whenever personal data are processed. Behavioural advertising is based on the use of identifiers that enable the creation of very detailed user's profiles which, in most cases, will be deemed personal data.”
+
+• Network providers should ensure compliance with the obligations that arise from Directive 95/46/EC which do not directly overlap with Article 5(3), namely, the purpose limitation principle, and security obligations. 
+
+
+Opinion 02/2013 on apps on smart devices
+states:
+“existence of a “distinction between the consent required to place any information on and read information from the device, and the consent necessary to have a legal ground for the processing of personal data. Though both consent requirements are simultaneously applicable [...] the two types of consent can be merged in practice, provided that the user is made unambiguously aware of what he is consenting to.”
+
+Recital 10 of E-Privacy Directive (2002/58/EC) states:
+In the electronic communications sector, Directive 95/46/EC applies in particular to all matters concerning protection of fundamental rights and freedoms, which are not specifically covered by the provisions of this Directive, including the obligations on the controller and the rights of individuals. Directive 95/46/EC applies to non-public communications services.""" .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#FirstPartyCookie
+
+:FirstPartyCookie a owl:Class ;
+	owl:equivalentClass _:genid21 .
+
+_:genid21 a owl:Restriction ;
+	owl:onProperty :hasOrigin ;
+	owl:hasValue "First Party" .
+
+:FirstPartyCookie rdfs:subClassOf :TrackingDevice .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#IllegitimateCookiePurpose
+
+:IllegitimateCookiePurpose a owl:Class ;
+	rdfs:subClassOf :CookiePurpose ;
+	owl:disjointWith :LegitimateCookiePurpose ;
+	rdfs:comment "Seriously intrude upon the privacy of the users (non exhaustive list)" ;
+	rdfs:isDefinedBy :directive58rec24 .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#LegalSource
+
+:LegalSource a owl:Class .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#LegitimateCookiePurpose
+
+:LegitimateCookiePurpose a owl:Class ;
+	rdfs:subClassOf :CookiePurpose ;
+	rdfs:comment "Facilitate the provision of information society (e.g. analysing the effectiveness of website design and advertising, and in verifying the identity of users engaged in on-line transactions) (non exhaustive list)" ;
+	rdfs:isDefinedBy :directive58rec25 .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#PermanentCookie
+
+:PermanentCookie a owl:Class ;
+	owl:equivalentClass _:genid22 .
+
+_:genid22 a owl:Restriction ;
+	owl:onProperty :hasDuration ;
+	owl:hasValue "Permanent" .
+
+:PermanentCookie rdfs:subClassOf :TrackingDevice .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#SessionCookie
+
+:SessionCookie a owl:Class ;
+	owl:equivalentClass _:genid23 .
+
+_:genid23 a owl:Restriction ;
+	owl:onProperty :hasDuration ;
+	owl:hasValue "Session" .
+
+:SessionCookie rdfs:subClassOf :TrackingDevice .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#SettingCookie
+
+:SettingCookie a owl:Class ;
+	owl:equivalentClass _:genid24 .
+
+_:genid24 owl:intersectionOf _:genid36 .
+
+_:genid36 a rdf:List ;
+	rdf:first _:genid37 .
+
+_:genid37 a owl:Restriction ;
+	owl:onProperty :IntroducesInTerminalEquipment ;
+	owl:someValuesFrom :TrackingDevice .
+
+_:genid36 rdf:rest _:genid31 .
+
+_:genid31 a rdf:List ;
+	rdf:first _:genid32 .
+
+_:genid32 a owl:Restriction ;
+	owl:onProperty :hasLegalGround ;
+	owl:someValuesFrom _:genid33 .
+
+_:genid33 a owl:Class ;
+	owl:unionOf _:genid35 .
+
+_:genid35 a rdf:List ;
+	rdf:first :CookieConsent ;
+	rdf:rest _:genid34 .
+
+_:genid34 a rdf:List ;
+	rdf:first :CookieDerogation ;
+	rdf:rest rdf:nil .
+
+_:genid31 rdf:rest _:genid29 .
+
+_:genid29 a rdf:List ;
+	rdf:first _:genid30 .
+
+_:genid30 a owl:Restriction ;
+	owl:onProperty :hasPublisher ;
+	owl:someValuesFrom :CookiePublisher .
+
+_:genid29 rdf:rest _:genid27 .
+
+_:genid27 a rdf:List ;
+	rdf:first _:genid28 .
+
+_:genid28 a owl:Restriction ;
+	owl:onProperty :hasPurpose ;
+	owl:someValuesFrom :LegitimateCookiePurpose .
+
+_:genid27 rdf:rest _:genid25 .
+
+_:genid25 a rdf:List ;
+	rdf:first _:genid26 .
+
+_:genid26 a owl:Restriction ;
+	owl:onProperty :hasRecipient ;
+	owl:someValuesFrom :CookieUser .
+
+_:genid25 rdf:rest rdf:nil .
+
+_:genid24 a owl:Class .
+
+:SettingCookie <http://www.estrellaproject.org/lkif-core/expression.owl#qualified_by> :directive58art5-3 ;
+	rdfs:comment "The operation consisting of introducing a device capable of storing or accessing information in the terminal equipment of a subscriber or user (syn. planting cookie)" , """What are the possible enforcement action in case of non compliance?
+
+The Member States Data Protection Authorities""" ;
+	rdfs:isDefinedBy :directive136rec66 , :directive58art15a , :directive58art5-3 .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#ThirdPartyCookie
+
+:ThirdPartyCookie a owl:Class ;
+	owl:equivalentClass _:genid38 .
+
+_:genid38 a owl:Restriction ;
+	owl:onProperty :hasOrigin ;
+	owl:hasValue "Third Party" .
+
+:ThirdPartyCookie rdfs:subClassOf :TrackingDevice .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#ThirdPartyPublisher
+
+:ThirdPartyPublisher a owl:Class ;
+	rdfs:subClassOf :CookiePublisher ;
+	owl:disjointWith :WebSiteOperator ;
+	rdfs:comment "An entity is a Third Party to the extent that it engages in Online Behavioural Advertising on a web site or web sites other than a web site or web sites it or a an entity under Common Control owns or operates (syn. Ad network provider)" , """Regarding ad network providers: 
+• Article 5(3) of the ePrivacy Directive which sets up an obligation to obtain prior informed consent applies to ad network providers. 
+• Ad network providers should encourage and work with browser manufacturers/developers to implement privacy by design in browsers. 
+• Ad network providers should swiftly move away from opt-out mechanisms and create prior opt-in mechanisms. Mechanisms to deliver informed, valid consent should require an affirmative action by the data subject indicating his/her willingness to receive cookies and the subsequent monitoring of their surfing behaviour for the purposes of sending him tailored advertising. 
+• In accordance with Recital 25 of the ePrivacy Directive, a users' acceptance to receive a cookie could also entail his/her acceptance for the subsequent readings of the cookie, and hence for the monitoring of his/her internet browsing. It would not be necessary to request consent for each reading of the cookie. However, to ensure that data subjects remain aware of the monitoring over time, ad network providers should: i) limit in time the scope of the consent; ii) offer the possibility to easily revoke their consent to being monitored for the purposes of serving behavioural advertising and iii) create a symbol or other tools which should be visible in all the web sites where the monitoring takes place (the website partners of the ad network provider). This symbol would not only remind individuals of the monitoring but also help them to control whether they want to continue being monitored or wish to revoke their consent. 
+• Network providers should ensure compliance with the obligations that arise from Directive 95/46/EC which do not directly overlap with Article 5(3), namely, the purpose limitation principle, and security obligations. 
+• In addition, the ad network providers should enable individuals to exercise their rights of access and rectification and erasure. The Article 29 Working Party welcomes the practice of some ad network providers to offer data subjects the possibility to access and modify the interest categories in which they have been classified.  
+• Ad network providers should implement retention policies which ensure that information collected each time that a cookie is read is automatically deleted after a justified period of time (necessary for the purposes of the processing). This also applies for alternative tracking technologies used for behavioural advertising such as JavaScript installed in the user's browser environment.""" ;
+	rdfs:isDefinedBy <http://ciolaws.com/ontologies/eulr-cookies#EASA/IABcode> , <http://ciolaws.com/ontologies/eulr-cookies#wp29-2/2010> .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#TrackingDevice
+
+:TrackingDevice a owl:Class ;
+	rdfs:comment """To which technologies is Art. 5(3) of the E-Privacy Directive (2002/58/EC) applicable?
+
+Device that can store or access information in a terminal equipment of a subscriber or user (e.g. cookies, Javascripts, device fingerprinting, spyware, virus, web bugs, hidden identifiers and other similar devices)
+The requirement applies to all types of information stored or accessed in the user’s terminal device although the majority of discussion has centred on the usage of cookies as understood by the definition in RFC6265. 
+
+The technologies falling within this definition include: 
+-	Cookies. 
+-	Scripts (such e.g. JavaScript code) and components (such as browsers plug-ins) to be executed on the client side. 
+-	Web caching mechanisms. 
+-	HTML5 local storage. 
+-	“Device fingerprinting”. 
+-	“Canvas fingerprinting” and “Evercookies” 
+-	Web beacons
+-	Any other technologies insofar as they enable reading or storing information from/onto the web service user's client device.
+
+The information accessed or stored does not need to be personal data.""" ;
+	rdfs:isDefinedBy :directive136rec66 , :directive58art5-3 , :edps071116 , <http://ciolaws.com/ontologies/eulr-cookies#wp29-04/2012> , <http://ciolaws.com/ontologies/eulr-cookies#wp29op9/2014> .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#WebSiteOperator
+
+:WebSiteOperator a owl:Class ;
+	rdfs:subClassOf :CookiePublisher ;
+	rdfs:comment "A Web Site Operator is the owner, controller or operator of the web site with which the web user interacts" ;
+	rdfs:isDefinedBy <http://ciolaws.com/ontologies/eulr-cookies#EASA/IABcode> .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Individuals
+# #
+# #################################################################
+# 
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#Cookie
+
+:Cookie a owl:NamedIndividual , :TrackingDevice ;
+	rdfs:comment "Pieces of text generated by the web services that the user has visited. Web services store these text files on the devices where the web browsers are installed to enable the exchange of information." ;
+	rdfs:isDefinedBy """RFC6265: HTTP State Management Mechanism
+http://tools.ietf.org/html/rfc6265""" .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#DeviceFingerprinting
+
+:DeviceFingerprinting a owl:NamedIndividual , :TrackingDevice ;
+	rdfs:comment "Device fingerprinting" ;
+	rdfs:isDefinedBy <http://ciolaws.com/ontologies/eulr-cookies#wp29op9/2014> .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#ExceptionA
+
+:ExceptionA a owl:NamedIndividual , :CookieDerogation ;
+	rdfs:comment """The technical storage or access for the sole purpose of carrying out the transmission of a communication over an electronic communications network.
+
+EXCEPTION A encompasses cookies that fulfil at least one of the properties defined (below) for Internet communications.
+1) The ability to route the information over the network, notably by identifying the communication endpoints. 
+2) The ability to exchange data items in their intended order, notably by numbering data packets, 
+3) The ability to detect transmission errors or data loss""" ;
+	rdfs:isDefinedBy :directive58art5-3 , <http://ciolaws.com/ontologies/eulr-cookies#wp29-04/2012> .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#ExceptionB
+
+:ExceptionB a owl:NamedIndividual , :CookieDerogation ;
+	rdfs:comment """The technical storage or access as strictly necessary in order for the provider of an information society service explicitly requested by the subscriber or user to provide the service (e.g. cookies necessary for the functioning of a shopping basket, the security of the system, the storing of language preferences
+
+A cookie matching EXCEPTION B would need to pass the following tests: 
+1) A cookie is necessary to provide a specific functionality to the user (or subscriber): if cookies are disabled, the functionality will not be available. 
+2) This functionality has been explicitly requested by the user (or subscriber), as part of an information society service. 
+Comment: “sole purpose” and “strictly necessary” indicate that these two exceptions must be interpreted in a restrictive way
+
+Ultimately:
+1) When applying EXCEPTION B, it is important to examine what is strictly necessary from the point of view of the user, not the service provider. 
+2) If a cookie is used for several purposes, it can only benefit from an exemption to informed consent if each distinct purpose individually benefits from such an exemption. 
+3) The purpose of the cookie should always be the basis for evaluating if the exemption can be successfully applied rather than a technical feature of the cookie.""" ;
+	rdfs:isDefinedBy :directive58art5-3 , <http://ciolaws.com/ontologies/eulr-cookies#wp29-04/2012> .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#HTML5LocalStorage
+
+:HTML5LocalStorage a owl:NamedIndividual , :TrackingDevice ;
+	rdfs:comment "HTML5 local storage." ;
+	rdfs:isDefinedBy :edps071116 .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#OnlineBehaviouralAdvertising
+
+:OnlineBehaviouralAdvertising a owl:NamedIndividual , :LegitimateCookiePurpose ;
+	rdfs:comment """Behavioural advertising techniques enable advertisers, mainly ad providers, to track individuals when they surf the internet, to build profiles and to use them to serve tailored advertising. In most cases, individuals are simply unaware that this is happening.
+
+Online Behavioural Advertising means the collection of data from a particular computer or device regarding web viewing behaviours over time and across multiple web domains not under Common Control for the purpose of using such data to predict web user preferences or interests to deliver online advertising to that particular computer or device based on the preferences or interests inferred from such web viewing behaviours. Online Behavioural Advertising does not include the activities of Web Site Operators, Ad Delivery or Ad Reporting, or contextual advertising (e.g. advertising based on the content of the web page being visited, a consumer’s current visit to a web page, or a search query).""" ;
+	rdfs:isDefinedBy <http://ciolaws.com/ontologies/eulr-cookies#EASA/IABcode> , <http://ciolaws.com/ontologies/eulr-cookies#wp29-16/2011> .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#Script
+
+:Script a owl:NamedIndividual , :TrackingDevice ;
+	rdfs:comment "Scripts (such e.g. JavaScript code) and components (such as browsers plug-ins) to be executed on the client side." ;
+	rdfs:isDefinedBy :edps071116 .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#W3Crec
+
+:W3Crec a owl:NamedIndividual , :LegalSource ;
+	rdfs:comment """Tracking Preference Expression (DNT), W3C Candidate Recommendation 20 August 2015
+Tracking Compliance and Scope (TCS), W3C Candidate Recommendation 26 April 2016""" ;
+	rdfs:label "W3C tracking protection working group recommendations" ;
+	rdfs:seeAlso "https://www.w3.org/2011/tracking-protection/" .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#WebBeacon
+
+:WebBeacon a owl:NamedIndividual , :TrackingDevice ;
+	rdfs:comment "Web beacons" ;
+	rdfs:isDefinedBy :edps071116 .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#WebCachingMechanism
+
+:WebCachingMechanism a owl:NamedIndividual , :TrackingDevice ;
+	rdfs:comment "Web caching mechanisms." ;
+	rdfs:isDefinedBy :edps071116 .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#directive136rec66
+
+:directive136rec66 a owl:NamedIndividual , :LegalSource ;
+	rdfs:comment "Third parties may wish to store information on the equipment of a user, or gain access to information already stored, for a number of purposes, ranging from the legitimate (such as certain types of cookies) to those involving unwarranted intrusion into the private sphere (such as spyware or viruses). It is therefore of paramount importance that users be provided with clear and comprehensive information when engaging in any activity which could result in such storage or gaining of access. The methods of providing information and offering the right to refuse should be as user-friendly as possible. Exceptions to the obligation to provide information and offer the right to refuse should be limited to those situations where the technical storage or access is strictly necessary for the legitimate purpose of enabling the use of a specific service explicitly requested by the subscriber or user. Where it is technically possible and effective, in accordance with the relevant provisions of Directive 95/46/EC, the user’s consent to processing may be expressed by using the appropriate settings of a browser or other application. The enforcement of these requirements should be made more effective by way of enhanced powers granted to the relevant national authorities." .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#directive58art15a
+
+:directive58art15a a owl:NamedIndividual , :LegalSource ;
+	rdfs:comment """Implementation  and  enforcement
+1.  Member  States  shall  lay  down  the  rules  on  penalties,  including  criminal  sanctions  where  appropriate,  applicable  to  infringements  of  the  national  provisions  adopted  pursuant  to  this  Directive  and  shall  take  all  measures  necessary  to  ensure  that  they  are  implemented.  The  penalties  provided  for  must  be  effective,  proportionate  and  dissuasive  and  may  be  applied  to  cover  the  period  of  any  breach,  even  where  the  breach  has  subsequently   been   rectified.   The   Member   States   shall   notify   those  provisions  to  the  Commission  by  25  May  2011,  and  shall  notify  it without  delay  of  any  subsequent  amendment  affecting  them.""" .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#directive58art2
+
+:directive58art2 a owl:NamedIndividual , :LegalSource ;
+	rdfs:comment """‘user’ means any natural person using a publicly available electronic communications service, for private or business purposes, without necessarily having subscribed to this service;
+‘consent’ by a user or subscriber corresponds to the data subject's consent in Directive 95/46/EC;""" .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#directive58art5-3
+
+:directive58art5-3 a owl:NamedIndividual , :LegalSource ;
+	rdfs:comment "Member States shall ensure that the storing of information, or the gaining of access to information already stored, in the terminal equipment of a subscriber or user is only allowed on condition that the subscriber or user concerned has given his or her consent, having been provided with clear and comprehensive information, in accordance with Directive 95/46/EC, inter alia, about the purposes of the processing. This shall not prevent any technical storage or access for the sole purpose of carrying out the transmission of a communication over an electronic communications network, or as strictly necessary in order for the provider of an information society service explicitly requested by the subscriber or user to provide the service." .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#directive58rec24
+
+:directive58rec24 a owl:NamedIndividual , :LegalSource ;
+	rdfs:comment "Terminal equipment of users of electronic communications networks and any information stored on such equipment are part of the private sphere of the users requiring protection under the European Convention for the Protection of Human Rights and Fundamental Freedoms. So-called spyware, web bugs, hidden identifiers and other similar devices can enter the user's terminal without their knowledge in order to gain access to information, to store hidden information or to trace the activities of the user and may seriously intrude upon the privacy of these users. The use of such devices should be allowed only for legitimate purposes, with the knowledge of the users concerned." ;
+	rdfs:isDefinedBy """E-Privacy Directive (2002/58/EC) as amended by the Citizens Rights Directive 2009/136/EC
+ELI: http://data.europa.eu/eli/dir/2002/58/oj""" .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#directive58rec25
+
+:directive58rec25 a owl:NamedIndividual , :LegalSource ;
+	rdfs:comment "However, such devices, for instance so-called ‘cookies’, can be a legitimate and useful tool, for example, in analysing the effectiveness of website design and advertising, and in verifying the identity of users engaged in on-line transactions. Where such devices, for instance cookies, are intended for a legitimate purpose, such as to facilitate the provision of information society services, their use should be allowed on condition that users are provided with clear and precise information in accordance with Directive 95/46/EC about the purposes of cookies or similar devices so as to ensure that users are made aware of information being placed on the terminal equipment they are using. Users should have the opportunity to refuse to have a cookie or similar device stored on their terminal equipment. This is particularly important where users other than the original user have access to the terminal equipment and thereby to any data containing privacy-sensitive information stored on such equipment. Information and the right to refuse may be offered once for the use of various devices to be installed on the user's terminal equipment during the same connection and also covering any further use that may be made of those devices during subsequent connections. The methods for giving information, offering a right to refuse or requesting consent should be made as user-friendly as possible. Access to specific website content may still be made conditional on the well-informed acceptance of a cookie or similar device, if it is used for a legitimate purpose." .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#edps071116
+
+:edps071116 a owl:NamedIndividual , :LegalSource ;
+	rdfs:label "EDPS guidelines on the protection of personal data processed through web services provided by EU institutions" ;
+	rdfs:seeAlso "https://secure.edps.europa.eu/EDPSWEB/webdav/site/mySite/shared/Documents/Supervision/Guidelines/16-11-07_Guidelines_Web_services_EN.pdf" .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#EASA/IABcode
+
+<http://ciolaws.com/ontologies/eulr-cookies#EASA/IABcode> a owl:NamedIndividual , :LegalSource ;
+	rdfs:label "EASA/IAB self-regulatory Best Practice Recommendation on online behavioural advertising" ;
+	rdfs:seeAlso """http://www.easa-alliance.org/issues/oba
+http://www.edaa.eu/european-principles/
+http://www.youronlinechoices.eu/""" .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#wp29-04/2012
+
+<http://ciolaws.com/ontologies/eulr-cookies#wp29-04/2012> a owl:NamedIndividual , :LegalSource ;
+	rdfs:label """This analysis has shown that the following cookies can be exempted from informed consent under certain conditions if they are not used for additional purposes: 
+1) User input cookies (session-id), for the duration of a session or persistent cookies limited to a few hours in some cases. 
+2) Authentication cookies, used for authenticated services, for the duration of a session. 
+3) User centric security cookies, used to detect authentication abuses, for a limited persistent duration. 
+4) Multimedia content player session cookies, such as flash player cookies, for the duration of a session. 
+5) Load balancing session cookies, for the duration of session. 
+6) UI customization persistent cookies, for the duration of a session (or slightly more). 
+7) Third party social plug-in content sharing cookies, for logged in members of a social network. 
+
+Having regard to social networks, the working party notes however that the use of third party social plug-in cookies for other purposes than to provide a functionality explicitly requested by their own members requires consent, notably if these purposes involve tracking users across websites. 
+The working party recalls that third party advertising cookies cannot be exempted from consent, and further clarifies that consent would also be needed for operational purposes related to third party advertising such as frequency capping, financial logging, ad affiliation, click fraud detection, research and market analysis, product improvement and debugging. While some operational purposes might certainly distinguish one user from another, in principle these purposes do not justify the use of unique identifiers. This point is of particular relevance in the context of the current discussions regarding the implementation of the Do Not Track standard in Europe. 
+This analysis also shows that first party analytics cookies are not exempt from consent but pose limited privacy risks, provided reasonable safeguards are in place, including adequate information, the ability to opt-out easily and comprehensive anonymisation mechanisms. 
+Some primary guidelines can be drawn from the analysis and the cookie use scenarios presented in this opinion:  
+
+
+1) When applying CRITERION B, it is important to examine what is strictly necessary from the point of view of the user, not the service provider. 
+2) If a cookie is used for several purposes, it can only benefit from an exemption to informed consent if each distinct purpose individually benefits from such an exemption. 
+3) First party session cookies are far more likely to be exempted from consent than third party persistent cookies. However the purpose of the cookie should always be the basis for evaluating if the exemption can be successfully applied rather than a technical feature of the cookie. 
+
+Ultimately, to decide if a cookie is exempt from the principle of informed consent it is important to verify carefully if it fulfils one of the two exemption criteria defined in Article 5.3 as modified by Directive 2009/136/EC. After a careful examination, if substantial doubts remain on whether or not an exemption criterion applies, website operators should closely examine if there is not in practice an opportunity to gain consent from users in a simple unobtrusive way, thus avoiding any legal uncertainty.""" , "Working Party 29 Opinion 04/2012 on Cookie Consent Exemption" .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#wp29-15/2011
+
+<http://ciolaws.com/ontologies/eulr-cookies#wp29-15/2011> a owl:NamedIndividual , :LegalSource ;
+	rdfs:comment """IV.1. Clarification of the key aspects of the current framework
+Article 2 (h) of Directive 95/46/EC defines consent as \"any freely given specific and informed indication of his wishes by which the data subject signifies his agreement to personal data relating to him being processed\". Article 7 of the Directive, which sets forth the legal basis for processing personal data, sets out unambiguous consent as one of the legal grounds. Article 8 requires explicit consent as a legal ground to process sensitive data. Article 26.1 of Directive 95/46/EC and various provisions of the ePrivacy Directive require consent to carry out specific data processing activities within their scope of application. The points developed in this opinion aim at clarifying the various elements of this legal framework in an effort to make it easier to apply by stakeholders in general.
+
+Elements/observations of general nature
+-	Consent is one of the six legal grounds to process personal data (one of five for sensitive data); it is an important ground as it gives some control to the data subject with regard to the processing of his data. The relevance of consent as an enabler of the individual’s autonomy and self-determination relies on its use in the right context and with the necessary elements.
+-	Generally speaking, the legal framework of Directive 95/46/EC applies whenever consent is sought, independently of whether this happens off-line or on-line. For example, the same rules apply when a bricks and mortar retailer seeks sign up for a loyalty card scheme via a paper form, as would be the case if it did this through its Internet site. In addition, the ePrivacy Directive specifies certain data processing operations which are subject to consent: they mostly relate to the processing of data in connection with the provision of publicly available electronic communication services. The requirements for consent to be valid within Directive 2002/58/EC are the same as under Directive 95/46/EC.
+-	Situations where data controllers use consent as a legal ground to process personal data should not be confused with situations where the controller bases the processing on other legal grounds which entail an individual right to object. For example, this may be the case when the processing relies on the 'legitimate interests' of the data controller ex Article 7(f) of Directive 95/46/EC, yet the individual has the right to object ex Article 14(a) of Directive 95/46/EC. Another example is when a data controller sends e-mail communications to existing clients in order to promote the data controller's own or similar products or services, however, individuals have a right to object under Article 13.2 of Directive 2002/58/EC. In both cases, the data subject has the right to object to the processing, this is not the same as consent.
+-	Reliance on consent to process personal data does not relieve the data controller from his obligation to meet the other requirements of the data protection legal framework, for example, to comply with the principle of proportionality under Article 6.1(c), security of the processing ex Article 17, etc. 
+-	Valid consent presupposes individuals' capacity to consent. Rules regarding the capacity to consent are not harmonised and may therefore vary from Member State to Member State.
+-	Individuals who have consented should be able to withdraw their consent, preventing further processing of their data. This is confirmed also under the ePrivacy Directive for specific data processing operations based on consent, such as the processing of location data other than traffic data. 
+-	Consent must be provided before the processing of personal data starts, but it can also be required in the course of a processing, where there is a new purpose. This is stressed in various provisions of Directive 2002/58/EC, either through the requirement \"prior\" (e.g. Article 6.3) or through the wording of the provisions (e.g. Article 5.3).
+
+Specific elements of the legal framework related to consent
+• For consent to be valid, it must be freely given. This means that there must be no risk of deception, intimidation or significant negative consequences for the data subject if he/she does not consent. Data processing operations in the employment environment where there is an element of subordination, as well as in the context of government services such as health may require careful assessment of whether individuals are free to consent.
+• Consent must be specific. Blanket consent without determination of the exact purposes does not meet the threshold. Rather than inserting the information in the general conditions of the contract, this calls for the use of specific consent clauses, separated from the general terms and conditions.
+• Consent must be informed. Articles 10 and 11 of the Directive lists the type of information that must necessarily be provided to individuals. In any event, the information provided must be sufficient to guarantee that individuals can make well informed decisions about the processing of their personal data. The need for consent to be \"informed\" translates into two additional requirements. First, the way in which the information is given must ensure the use of appropriate language so that data subjects understand what they are consenting to and for what purposes. This is contextual. The use of overly complicated legal or technical jargon would not meet the requirements of the law. Second, the information provided to users should be clear and sufficiently conspicuous so that users cannot overlook it. The information must be provided directly to individuals. It is not enough for it to be merely available somewhere.
+• As to how consent must be provided, Article 8.2(a) requires explicit consent to process sensitive data, meaning an active response, oral or in writing, whereby the individual expresses his/her wish to have his/her data processed for certain purposes. Therefore, express consent cannot be obtained by the presence of a pre-ticked box. The data subject must take some positive action to signify consent and must be free not to consent.
+• For data other than sensitive data, Article 7(a) requires consent to be unambiguous. \"Unambiguous\" calls for the use of mechanisms to obtain consent that leave no doubt as to the individual's intention to provide consent. In practical terms, this requirement enables data controllers to use different types of mechanisms to seek consent, ranging from statements to indicate agreement (express consent), to mechanisms that rely on actions that aim at indicating agreement.
+• Consent based on an individual's inaction or silence would normally not constitute valid consent, especially in an on-line context. This is an issue that arises in particular with regard to the use of default settings which the data subject is required to modify in order to reject the processing. For example, this is the case with the use of pre-ticked boxes or Internet browser settings that are set by default to collect data.""" ;
+	rdfs:label "Working Party 29 Opinion 15/2011 on the definition of consent" .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#wp29-16/2011
+
+<http://ciolaws.com/ontologies/eulr-cookies#wp29-16/2011> a owl:NamedIndividual , :LegalSource ;
+	rdfs:label "Working Party 29 Opinion 16/2011 on EASA/IAB Best Practice Recommendation on Online Behavioural Advertising" ;
+	rdfs:seeAlso "http://ec.europa.eu/justice/data-protection/article-29/documentation/opinion-recommendation/files/2011/wp188_en.pdf" .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#wp29-2/2010
+
+<http://ciolaws.com/ontologies/eulr-cookies#wp29-2/2010> a owl:NamedIndividual , :LegalSource ;
+	rdfs:comment """Paragraph 6.1 Applicable laws
+• Article 5(3) applies whenever \"information\" such as a cookie is stored or retrieved from the terminal equipment of an internet user. It is not a prerequisite that this information is personal data.
+• In addition, Directive 95/46/EC applies to matters not specifically covered by the ePrivacy Directive whenever personal data are processed. Behavioural advertising is based on the use of identifiers that enable the creation of very detailed user's profiles which, in most cases, will be deemed personal data.
+
+Paragraph 6.4 Obligations and rights 
+Regarding ad network providers: 
+• Article 5(3) of the ePrivacy Directive which sets up an obligation to obtain prior informed consent applies to ad network providers. 
+• Browser settings may only deliver consent in very limited circumstances. Notably, if browsers are set up by default to reject all cookies (having the browser set to such an option) and the user has changed the settings to affirmatively accept cookies, for which he has been fully informed about the name of the data controller, the processing its goals and the data that is collected. Therefore, the browser must either alone or in combination with other means effectively convey clear, comprehensive and fully visible information about the processing. 
+• Ad network providers should encourage and work with browser manufacturers/developers to implement privacy by design in browsers. 
+• Cookie-based opt-out mechanisms in general do not constitute an adequate mechanism to obtain informed user consent.  In most cases user's consent is implied if they do not opt out. However, in practice, very few people exercise the opt-out option, not because they have made an informed decision to accept behavioural advertising, but rather because they do not realise that the processing is taking place, much less how to exercise the opt out. 
+• Ad network providers should swiftly move away from opt-out mechanisms and create prior opt-in mechanisms. Mechanisms to deliver informed, valid consent should require an affirmative action by the data subject indicating his/her willingness to receive cookies and the subsequent monitoring of their surfing behaviour for the purposes of sending him tailored advertising. 
+• In accordance with Recital 25 of the ePrivacy Directive, a users' acceptance to receive a cookie could also entail his/her acceptance for the subsequent readings of the cookie, and hence for the monitoring of his/her internet browsing. It would not be necessary to request consent for each reading of the cookie. However, to ensure that data subjects remain aware of the monitoring over time, ad network providers should: i) limit in time the scope of the consent; ii) offer the possibility to easily revoke their consent to being monitored for the purposes of serving behavioural advertising and iii) create a symbol or other tools which should be visible in all the web sites where the monitoring takes place (the website partners of the ad network provider). This symbol would not only remind individuals of the monitoring but also help them to control whether they want to continue being monitored or wish to revoke their consent. 
+• Network providers should ensure compliance with the obligations that arise from Directive 95/46/EC which do not directly overlap with Article 5(3), namely, the purpose limitation principle, and security obligations. 
+• In addition, the ad network providers should enable individuals to exercise their rights of access and rectification and erasure. The Article 29 Working Party welcomes the practice of some ad network providers to offer data subjects the possibility to access and modify the interest categories in which they have been classified.  
+• Ad network providers should implement retention policies which ensure that information collected each time that a cookie is read is automatically deleted after a justified period of time (necessary for the purposes of the processing). This also applies for alternative tracking technologies used for behavioural advertising such as JavaScript installed in the user's browser environment.  
+
+Ad network providers and publishers: 
+• Providing highly visible information is a precondition for consent to be valid. Mentioning the practice of behavioural advertising in general terms and conditions and/or privacy policies can never suffice. In this regard and taking into account the average low level of knowledge about the practice of behavioural advertising, efforts should be applied to change this situation. 
+• Ad network providers/ publishers must provide information to users in compliance with Article 10 of Directive 95/46/EC. In practical terms, they should ensure that individuals are told, at a minimum, who (i.e. which entity) is responsible for serving the cookie and collecting the related information. In addition, they should be informed in simple ways that (a) the cookie will be used to create profiles; (b) what type of information will be collected to build such profiles; (c) the fact that the profiles will be used to deliver targeted advertising and (d) the fact that the cookie will enable the user's identification across multiple web sites. 
+• Network providers/ publishers should provide the information directly on the screen, interactively, if needed, through layered notices.  In any event it should be easily accessible and highly visible. 
+• Icons placed on the publisher's website, around advertising, with links to additional information, are good examples. The Article 29 Working Party urges the network providers/ publisher industry to be creative in this area.""" ;
+	rdfs:label "Working Party 29 Opinion 2/2010 on online behavioural advertising" .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#wp29op9/2014
+
+<http://ciolaws.com/ontologies/eulr-cookies#wp29op9/2014> a owl:NamedIndividual , :LegalSource ;
+	rdfs:label "Working Party 29 Opinion 9/2014 on the application of Directive 2002/58/EC to device fingerprinting" ;
+	rdfs:seeAlso "http://ec.europa.eu/justice/data-protection/article-29/documentation/opinion-recommendation/files/2014/wp224_en.pdf" .
+# 
+# http://ciolaws.com/ontologies/eulr-cookies#wp29wd02/2013
+
+<http://ciolaws.com/ontologies/eulr-cookies#wp29wd02/2013> a owl:NamedIndividual , :LegalSource ;
+	rdfs:label "Working Party 29 Working Document 02/2013 providing guidance on obtaining consent for cookies" ;
+	rdfs:seeAlso "http://ec.europa.eu/justice/data-protection/article-29/documentation/opinion-recommendation/files/2013/wp208_en.pdf" .
+# 
+# Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi
